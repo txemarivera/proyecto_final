@@ -38,7 +38,7 @@ def about_app():
 
     **Instrucciones de Uso**
 
-    - **Inicio**: Al abrir la aplicación, los usuarios pueden (lo completamos al final ya que no tengo claro que vamos poder filtrar).
+    - **Inicio**: Al abrir la aplicación, se visualiza una pantalla de bienvenida con el menú de opciones que permite acceder a las distintas opciones de la aplicación.
     - **Parámetros**: Poderemos filtrar distintos parámetros de análisis deseados del EDA, indicadores tales como volatilidad histórica, índice VIX, beta, y otros indicadores relevantes.
     - **Resultados**: La aplicación mostrará gráficos interactivos y tablas con los datos analizados.
     
