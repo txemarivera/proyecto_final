@@ -6,6 +6,7 @@ import pandas as pd
 
 from datetime import datetime
 from dotenv import load_dotenv
+from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -70,13 +71,18 @@ def get_news(last_date):
             nltk.data.find('corpora/stopwords')
         except LookupError:
             nltk.download('stopwords')
-        from nltk.corpus import stopwords
         
+        try:
+            nltk.data.find('tokenizers/punkt')
+        except LookupError:
+            nltk.download('punkt')
+        from nltk.corpus import stopwords
+
         X = df['Sentence'].apply(limpiar_texto).values
         count_vectorizer = CountVectorizer(max_features = 8000)
         count_vectorizer.fit_transform(X)
         vocabulario_ordenado = sorted(count_vectorizer.vocabulary_.items(), key = lambda x : x[0], reverse=False)
-        STOPWORDS = nltk.corpus.stopwords.words("english")
+        STOPWORDS = stopwords.words("english")
         lista_stopwords = [ item[0] for item in vocabulario_ordenado if item[0] > 'zz' or item[0] < 'aa']
         STOPWORDS = set(STOPWORDS).union(set(lista_stopwords))
         return STOPWORDS
