@@ -15,6 +15,18 @@ from tensorflow.keras.optimizers import Adam
 
 from modules.ml_func import *
 
+
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+    
+from nltk.corpus import stopwords
 ### 2.- Datos del Noticias Financieras
 
 def get_news(last_date):
