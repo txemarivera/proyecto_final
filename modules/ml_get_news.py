@@ -66,6 +66,12 @@ def get_news(last_date):
     
     # Funciones de limpieza del texto
     def generar_stopwords(X):
+        try:
+            nltk.data.find('corpora/stopwords')
+        except LookupError:
+            nltk.download('stopwords')
+        from nltk.corpus import stopwords
+        
         X = df['Sentence'].apply(limpiar_texto).values
         count_vectorizer = CountVectorizer(max_features = 8000)
         count_vectorizer.fit_transform(X)
